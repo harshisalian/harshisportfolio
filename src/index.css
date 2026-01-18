@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-comic: 'Bangers', cursive;
+    --c-cyan: #00bcd4;
+    --c-magenta: #e91e63;
+    --c-yellow: #ffeb3b;
+    --c-black: #111111;
+  }
+
+  html { font-family: var(--font-sans); }
+  body { @apply antialiased bg-[var(--c-black)] text-white; }
+}
+
+/* Comic borders and halftone utilities */
+@layer utilities {
+  .comic-border { @apply border-[4px] border-black shadow-[6px_6px_0_0_#000]; }
+  .panel { @apply bg-white text-black comic-border; }
+  .panel-dark { @apply bg-[var(--c-black)] text-white border-[4px] border-black shadow-[6px_6px_0_0_#000]; }
+  .halftone {
+    background-image: radial-gradient(rgba(0,0,0,0.25) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+  .halftone-cyan { background-image: radial-gradient(rgba(0,188,212,0.35) 1px, transparent 1px); background-size: 8px 8px; }
+  .halftone-magenta { background-image: radial-gradient(rgba(233,30,99,0.35) 1px, transparent 1px); background-size: 8px 8px; }
+  .halftone-yellow { background-image: radial-gradient(rgba(255,235,59,0.35) 1px, transparent 1px); background-size: 8px 8px; }
+
+  .title-font { font-family: var(--font-comic); letter-spacing: 1px; }
+
+  .speech { @apply relative bg-white text-black comic-border rounded-2xl px-6 py-4; }
+  .speech:after { content: ''; position: absolute; left: 2rem; bottom: -18px; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 18px solid #fff; filter: drop-shadow(6px 6px 0 #000); }
+
+  .caption { @apply bg-yellow-300 text-black comic-border px-4 py-2 uppercase tracking-widest; font-family: var(--font-comic); }
+
+  .pow { @apply title-font text-4xl text-white px-3 py-1 rotate-[-8deg] comic-border; background-color: var(--c-magenta); }
+
+  .comic-btn { @apply inline-block comic-border px-6 py-3 bg-[var(--c-cyan)] text-black font-bold transition-transform duration-200; }
+  .comic-btn:hover { transform: translate(-2px, -2px) scale(1.04) rotate(-1deg); }
+}
+
+/* Cursor trail */
+.dot { position: fixed; width: 8px; height: 8px; border-radius: 9999px; pointer-events: none; mix-blend-mode: screen; }
