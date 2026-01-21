@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node node_modules/vite/dist/node/cli.js build",
-    "preview": "node node_modules/vite/dist/node/cli.js preview"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
